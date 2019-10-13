@@ -70,14 +70,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
                 android:background="@drawable/boder_button_status"
-                android:text="Done"
+                android:text="Washed"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="30dp"
                 android:textColor="@color/white"/>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@drawable/boder_bottom_status_whie"
+                android:text="Detail"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"/>
 
         </LinearLayout>
 
