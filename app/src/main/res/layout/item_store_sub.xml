@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:background="@drawable/boder_bottom_white_background"
+        android:gravity="center_vertical"
+        android:text="#123456"
+        android:textSize="12dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:background="@drawable/boder_bottom_white_background"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="15px">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vo Thi Kim Thuy"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp" />
+
+            <LinearLayout
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery expect:"
+                    android:textSize="13dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2019/03/10"
+                    android:textColor="#660000"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2 services - 21000 VND"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@drawable/boder_button_status"
+                android:text="Washed"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/white"/>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@drawable/boder_bottom_status_whie"
+                android:text="Detail"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
