@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import thuyvtk.activity.laundry_store.R;
 import thuyvtk.activity.laundry_store.activity.EditProfileActivity;
+import thuyvtk.activity.laundry_store.activity.LoginActivity;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.StoreDTO;
 
@@ -32,8 +33,9 @@ public class StoreAccountFragment extends Fragment {
     CircleImageView image_profile;
     ImageButton imgEdit;
     TextView txtStoreName;
-    TextView txtAddress;
+    TextView txtAddress, txtLogout;
     StoreDTO currentUser;
+    SharePreferenceLib sharePreferenceLib;
 
     public StoreAccountFragment() {
         // Required empty public constructor
@@ -56,6 +58,16 @@ public class StoreAccountFragment extends Fragment {
         imgEdit = view.findViewById(R.id.imgEdit);
         txtStoreName = view.findViewById(R.id.txtStoreName);
         txtAddress = view.findViewById(R.id.txtAddress);
+        txtLogout = view.findViewById(R.id.txtLogout);
+        txtLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharePreferenceLib.logouṭ();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 
     private void editStoreProfile () {
@@ -76,7 +88,7 @@ public class StoreAccountFragment extends Fragment {
     }
 
     private void getStoreProfile() {
-        SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(getContext());
+        sharePreferenceLib = new SharePreferenceLib(getContext());
         currentUser = sharePreferenceLib.getUser();
         txtStoreName.setText(currentUser.getStoreName());
         txtAddress.setText(currentUser.getAddress());
