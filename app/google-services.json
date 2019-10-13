@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "617404688002",
+    "firebase_url": "https://testfirebase-7bdd4.firebaseio.com",
+    "project_id": "testfirebase-7bdd4",
+    "storage_bucket": "testfirebase-7bdd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617404688002:android:82fef4dfe29f1b24c7769b",
+        "android_client_info": {
+          "package_name": "thuyvtk.activity.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617404688002-rtrpcun42lv3691kuclbj8e3nlq5ddhr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thuyvtk.activity.firebase",
+            "certificate_hash": "a07e9623ab72d4204da5896a951ea3b123080e10"
+          }
+        },
+        {
+          "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2yNBDl9d-It40W40ti8bNzeIOoC1L9w0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617404688002:android:6c46d9baee9d13e6c7769b",
+        "android_client_info": {
+          "package_name": "thuyvtk.activity.laundry_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617404688002-o6c718kvvrjf0pg3fopclt8omhfosjdq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thuyvtk.activity.laundry_customer",
+            "certificate_hash": "a07e9623ab72d4204da5896a951ea3b123080e10"
+          }
+        },
+        {
+          "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2yNBDl9d-It40W40ti8bNzeIOoC1L9w0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617404688002:android:2000281356d1449dc7769b",
+        "android_client_info": {
+          "package_name": "thuyvtk.activity.laundry_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617404688002-1jcavpno89s63c8stmj9a4i3h3favac5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thuyvtk.activity.laundry_store",
+            "certificate_hash": "a07e9623ab72d4204da5896a951ea3b123080e10"
+          }
+        },
+        {
+          "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2yNBDl9d-It40W40ti8bNzeIOoC1L9w0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617404688002-l84nkkrsbf67m0mmtk4h0okd8pslut6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

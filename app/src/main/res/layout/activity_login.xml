@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@drawable/login_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/logo_string"
+            android:layout_marginTop="150dp"
+            android:textSize="40dp"
+            android:fontFamily="serif-monospace"
+            android:textColor="@color/white"
+            android:background="@drawable/border_logo_login"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/line_white"/>
+
+        <Button
+            android:id="@+id/btnLogin_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login with Phone number"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/white"
+            android:background="#008000"/>
+
+        <Button
+            android:id="@+id/btnLogin_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Login with Facebook"
+            android:background="#4267B2"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/white"/>
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnLogin_gamail"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="#008000"-->
+        <!--            android:text="Login with Phone number" />-->
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Laundry_Store</string>
+    <string name="logo_string">laundry</string>
+    <string name="hint_service_wash">eg: Giặt từ 1 - 3kg</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

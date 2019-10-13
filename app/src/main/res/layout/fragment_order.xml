@@ -1,0 +1,120 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darker"
+    tools:context=".fragment.ServiceFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/gradient_purple_1"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/imgCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/txtDayStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3/3/2019"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  ->  "
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtDayEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31/3/2019"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/gradient_purple_2" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabOrder"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15px"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="15px"
+                android:background="@drawable/boder_radius_tab_item"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/TabOrderTextAppearance">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Ongoing" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabReceived"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Received" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Done" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabDelivered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Delivered" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancel" />
+
+
+            </com.google.android.material.tabs.TabLayout>
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp" />
+
+    </LinearLayout>
+</FrameLayout>

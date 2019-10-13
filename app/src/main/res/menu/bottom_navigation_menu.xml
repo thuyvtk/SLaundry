@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Add"
+        android:id="@+id/navigation_add_new"
+        android:icon="@drawable/ic_edit_black_24dp"/>
+    <item android:title="Service"
+        android:id="@+id/navigation_service"
+        android:icon="@drawable/ic_content_paste_black_24dp"/>
+    <item android:title="Order"
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/ic_order"/>
+    <item android:title="Shop"
+        android:id="@+id/navigation_shop_account"
+        android:icon="@drawable/ic_store_white_24dp"/>
+
+</menu>
