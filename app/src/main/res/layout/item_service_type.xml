@@ -8,7 +8,7 @@
         android:id="@+id/txtServiceType"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#d6e0f5"
+        android:background="@drawable/border_radius_service_type"
         android:text="WASH"
         android:textSize="17dp"
         android:textStyle="bold"

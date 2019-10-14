@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,8 +40,8 @@ public class ServiceTypeAdapter extends RecyclerView.Adapter<ServiceTypeAdapter.
     @Override
     public void onBindViewHolder(@NonNull ServiceTypeViewHolder holder, int position) {
         ServiceTypeDTO serviceTypeDTO = listServiceType.get(position);
-        holder.txtServiceType.setText(serviceTypeDTO.getServiceTypeName());
-        ServiceAdapter serviceAdapter = new ServiceAdapter(context, serviceTypeDTO.getListService());
+        holder.txtServiceType.setText(serviceTypeDTO.getServiceTypeName().toUpperCase());
+//        ServiceAdapter serviceAdapter = new ServiceAdapter(context, serviceTypeDTO.getListService());
     //   holder.rv_serviceType.setAdapter(serviceAdapter);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         for (ServiceDTO item : serviceTypeDTO.getListService()) {
