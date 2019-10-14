@@ -31,7 +31,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.StoreVie
     @NonNull
     @Override
     public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_store, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_service, parent, false);
         return new StoreViewHolder(itemView);
     }
 

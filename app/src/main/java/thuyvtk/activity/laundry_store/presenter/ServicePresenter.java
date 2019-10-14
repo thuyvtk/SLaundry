@@ -5,6 +5,7 @@ import android.widget.Toast;
 import java.util.List;
 import thuyvtk.activity.laundry_store.callbacks.CallbackData;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
+import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
 import thuyvtk.activity.laundry_store.service.ServiceService;
 import thuyvtk.activity.laundry_store.service.serviceImpl.ServiceServiceImpl;
 import thuyvtk.activity.laundry_store.view.ServiceView;
@@ -34,9 +35,9 @@ public class ServicePresenter {
     }
 
     public void getServiceByStore(String storeId) {
-        serviceService.getServiceByStore(storeId, new CallbackData<List<ServiceDTO>>() {
+        serviceService.getServiceByStore(storeId, new CallbackData<List<ServiceTypeDTO>>() {
             @Override
-            public void onSuccess(List<ServiceDTO> result) {
+            public void onSuccess(List<ServiceTypeDTO> result) {
                 serviceView.returnListStore(result);
             }
 

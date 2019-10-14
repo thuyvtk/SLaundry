@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import thuyvtk.activity.laundry_store.R;
@@ -70,9 +71,9 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
                 if (validateData()) {
                     if (serviceTypeDTO.getServiceTypeId() == null) {
                         // toDo
-                        serviceTypePresenter.insertServiceType(new ServiceTypeDTO("", serviceType, false));
+                        serviceTypePresenter.insertServiceType(new ServiceTypeDTO("", serviceType, false, new ArrayList<ServiceDTO>()));
                     } else if (serviceTypeDTO.isDelete()) {
-                        serviceTypePresenter.updateServiceTypeStatus(new ServiceTypeDTO(serviceTypeDTO.getServiceTypeId(), "", false));
+                        serviceTypePresenter.updateServiceTypeStatus(new ServiceTypeDTO(serviceTypeDTO.getServiceTypeId(), "", false, new ArrayList<ServiceDTO>()));
                         insertService();
                     } else {
                         insertService();
@@ -117,6 +118,7 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
     }
 
     @Override
-    public void returnListStore(List<ServiceDTO> result) {
+    public void returnListStore(List<ServiceTypeDTO> result) {
+
     }
 }

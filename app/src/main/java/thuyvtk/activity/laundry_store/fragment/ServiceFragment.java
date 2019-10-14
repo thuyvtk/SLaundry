@@ -18,8 +18,10 @@ import java.util.List;
 
 import thuyvtk.activity.laundry_store.R;
 import thuyvtk.activity.laundry_store.adapter.ServiceAdapter;
+import thuyvtk.activity.laundry_store.adapter.ServiceTypeAdapter;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
+import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
 import thuyvtk.activity.laundry_store.presenter.ServicePresenter;
 import thuyvtk.activity.laundry_store.view.ServiceView;
 
@@ -29,7 +31,7 @@ import thuyvtk.activity.laundry_store.view.ServiceView;
 public class ServiceFragment extends Fragment implements ServiceView {
     RecyclerView rv_service;
     ServicePresenter servicePresenter;
-    ServiceAdapter serviceAdapter;
+    ServiceTypeAdapter serviceTypeAdapter;
     LinearLayout ln_waiting;
 
 
@@ -69,9 +71,9 @@ public class ServiceFragment extends Fragment implements ServiceView {
     }
 
     @Override
-    public void returnListStore(List<ServiceDTO> result) {
-        serviceAdapter = new ServiceAdapter(getContext(),result);
-        rv_service.setAdapter(serviceAdapter);
+    public void returnListStore(List<ServiceTypeDTO> result) {
+        serviceTypeAdapter = new ServiceTypeAdapter(getContext(),result);
+        rv_service.setAdapter(serviceTypeAdapter);
         ln_waiting.setVisibility(View.GONE);
     }
 }

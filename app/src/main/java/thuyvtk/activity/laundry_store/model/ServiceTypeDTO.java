@@ -3,6 +3,7 @@ package thuyvtk.activity.laundry_store.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ServiceTypeDTO implements Serializable {
     @SerializedName("Id")
@@ -11,14 +12,17 @@ public class ServiceTypeDTO implements Serializable {
     private String serviceTypeName;
     @SerializedName("IsDelete")
     private boolean isDelete;
+    @SerializedName("listService")
+    private List<ServiceDTO> listService;
 
     public ServiceTypeDTO() {
     }
 
-    public ServiceTypeDTO(String serviceTypeId, String serviceTypeName, boolean isDelete) {
+    public ServiceTypeDTO(String serviceTypeId, String serviceTypeName, boolean isDelete, List<ServiceDTO> listService) {
         this.serviceTypeId = serviceTypeId;
         this.serviceTypeName = serviceTypeName;
         this.isDelete = isDelete;
+        this.listService = listService;
     }
 
     public String getServiceTypeId() {
@@ -43,5 +47,13 @@ public class ServiceTypeDTO implements Serializable {
 
     public void setDelete(boolean delete) {
         isDelete = delete;
+    }
+
+    public List<ServiceDTO> getListService() {
+        return listService;
+    }
+
+    public void setListService(List<ServiceDTO> listService) {
+        this.listService = listService;
     }
 }

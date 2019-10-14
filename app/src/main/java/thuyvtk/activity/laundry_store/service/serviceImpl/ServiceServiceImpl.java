@@ -14,6 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import thuyvtk.activity.laundry_store.callbacks.CallbackData;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
+import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
 import thuyvtk.activity.laundry_store.repositories.ClientApi;
 import thuyvtk.activity.laundry_store.service.ServiceService;
 
@@ -60,7 +61,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public void getServiceByStore(String storeId, final CallbackData<List<ServiceDTO>> callbackData) {
+    public void getServiceByStore(String storeId, final CallbackData<List<ServiceTypeDTO>> callbackData) {
         Call<ResponseBody> serviceCall = clientApi.getGenericApi().getServiceByStore(storeId);
         serviceCall.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -69,9 +70,9 @@ public class ServiceServiceImpl implements ServiceService {
                     if (response.code() == 200 || response.code() == 201) {
                         try {
                             String result = response.body().string();
-                            Type type = new TypeToken<List<ServiceDTO>>() {
+                            Type type = new TypeToken<List<ServiceTypeDTO>>() {
                             }.getType();
-                            List<ServiceDTO> responseResult = new Gson().fromJson(result, type);
+                            List<ServiceTypeDTO> responseResult = new Gson().fromJson(result, type);
                             if (responseResult != null) {
                                 callbackData.onSuccess(responseResult);
                             } else {
