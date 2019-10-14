@@ -3,17 +3,24 @@ package thuyvtk.activity.laundry_store.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.List;
 
 import thuyvtk.activity.laundry_store.R;
+import thuyvtk.activity.laundry_store.config.ImageManager;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
 import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
@@ -27,6 +34,8 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
     EditText edtDescription;
     EditText edtPrice;
     Button btnSaveService;
+    ImageButton btnSelectImage;
+    TextView txtImgUrl;
     LinearLayout ln_waiting;
     ServicePresenter servicePresenter;
     ServiceTypePresenter serviceTypePresenter;
@@ -34,6 +43,13 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
     ServiceTypeDTO serviceTypeDTO = new ServiceTypeDTO();
     SharePreferenceLib sharePreferenceLib;
     Context context = this;
+    private static final int SELECT_IMAGE = 100;
+    boolean flagChangeImageProfile = false;
+    Uri imageUri;
+    String imageName;
+    static final String CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=sqlvadtabpe45ilkho;AccountKey=Q0GtVfudYOKaYykP6CLCyk7uG/0Dak6C9WuAGDj5wQizMJDFEtEPaTGkGtdmNAatlbSXo4xznJAvOw4slPYAIg==;EndpointSuffix=core.windows.net";
+    static final String IMAGE_FOLDER = "imagefolder";
+    final String serverName = "https://sqlvadtabpe45ilkho.blob.core.windows.net/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +60,7 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
         serviceType = getIntent().getStringExtra("serviceName");
         serviceTypePresenter = new ServiceTypePresenter(this);
         getServiceTypeId();
+        selectProfileImage();
         servicePresenter = new ServicePresenter(this);
         createNewService();
     }
@@ -54,6 +71,8 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
         edtPrice = findViewById(R.id.edtPrice);
         btnSaveService = findViewById(R.id.btnSaveService);
         ln_waiting = findViewById(R.id.ln_waiting);
+        btnSelectImage = findViewById(R.id.btnSelectImage);
+        txtImgUrl = findViewById(R.id.txtImgUrl);
     }
 
     public void backPreActivity(View view) {
@@ -64,6 +83,30 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
         serviceTypePresenter.getServiceTypeByName(serviceType);
     }
 
+    private void selectProfileImage() {
+        btnSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+                flagChangeImageProfile = true;
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch (requestCode) {
+            case SELECT_IMAGE:
+                if (resultCode == RESULT_OK) {
+                    this.imageUri = imageReturnedIntent.getData();
+                    this.txtImgUrl.setText(this.imageUri.toString());
+                }
+        }
+    }
     private void createNewService() {
         btnSaveService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +119,7 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
                         serviceTypePresenter.updateServiceTypeStatus(new ServiceTypeDTO(serviceTypeDTO.getServiceTypeId(), "", false, new ArrayList<ServiceDTO>()));
                         insertService();
                     } else {
-                        insertService();
+                        uploadImage();
                     }
                 }
             }
@@ -84,20 +127,65 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
 
     }
 
+    private void uploadImage() {
+        try {
+            final InputStream imageStream = getContentResolver().openInputStream(this.imageUri);
+            final int imageLength = imageStream.available();
+            final Handler handler = new Handler();
+            Thread th = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        imageName = ImageManager.UploadImage(imageStream, imageLength, CONNECTION_STRING, IMAGE_FOLDER);
+                        handler.post(new Runnable() {
+                            public void run() {
+                                insertService();
+                            }
+
+                        });
+                    } catch (Exception ex) {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Upload image failed!", Toast.LENGTH_SHORT).show();
+                                txtImgUrl.setText(null);
+                                imageName = "*";// if upload fail set imagename to *
+                            }
+                        });
+                    }
+                }
+            });
+            th.start();
+
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void insertService() {
+        String imageURL = serverName + IMAGE_FOLDER + "/" + imageName;
         ServiceDTO serviceDTO = new ServiceDTO();
         serviceDTO.setServiceId("");
         serviceDTO.setServiceTypeId(serviceTypeDTO.getServiceTypeId());
         serviceDTO.setStoreId(sharePreferenceLib.getUser().getStoreId());
         serviceDTO.setDescription(edtDescription.getText().toString().trim());
         serviceDTO.setPrice(Float.parseFloat(edtPrice.getText().toString().trim()));
-        servicePresenter.insertService(context,serviceDTO);
-        ln_waiting.setVisibility(View.VISIBLE);
+        if (flagChangeImageProfile) {
+            serviceDTO.setImgUrl(imageURL);
+        }
+        createService(serviceDTO);
+    }
+    boolean flag = false;
+    private void createService(ServiceDTO serviceDTO){
+        if (!flag) {
+            servicePresenter.insertService(context,serviceDTO);
+            ln_waiting.setVisibility(View.VISIBLE);
+            flag = true;
+        }
+
     }
 
     private boolean validateData() {
         if (edtDescription.getText().toString().isEmpty()
-                || edtPrice.getText().toString().isEmpty()) {
+                || edtPrice.getText().toString().isEmpty() || txtImgUrl.getText().toString().isEmpty()) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Some data are empty!");
             AlertDialog alertDialog = alertDialogBuilder.create();
