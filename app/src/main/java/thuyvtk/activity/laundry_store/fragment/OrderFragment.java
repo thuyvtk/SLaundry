@@ -28,42 +28,19 @@ import thuyvtk.activity.laundry_store.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class OrderFragment extends Fragment{
     ImageButton imgCalendar;
     TextView txtDateStart, txtDateEnd;
     CalendarPickerView cal_order;
     Dialog dialog;
     Button dialogButton;
     TabLayout tabOrder;
+    final String FORMAT_DATE = "yyyy-MM-dd";
 
     public OrderFragment() {
         // Required empty public constructor
     }
 
-    private void setDialog() {
-        Date today = new Date();
-        Calendar lastYear = Calendar.getInstance();
-        lastYear.add(Calendar.YEAR, -1);
-        Calendar tomorrow = Calendar.getInstance();
-        tomorrow.add(Calendar.DATE,1);
-        dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.dialog_calendar);
-        dialogButton = (Button) dialog.findViewById(R.id.btnSaveService);
-        cal_order = dialog.findViewById(R.id.calendarPickSelectedDate);
-        cal_order.init(lastYear.getTime(), tomorrow.getTime()).inMode(CalendarPickerView.SelectionMode.RANGE).withSelectedDate(today);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<Date> selectedDates = (ArrayList<Date>) cal_order.getSelectedDates();
-                SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
-                Date startDate = selectedDates.get(0);
-                Date endDate = selectedDates.get(selectedDates.size() - 1);
-                txtDateStart.setText(sdf.format(startDate));
-                txtDateEnd.setText(sdf.format(endDate));
-                dialog.dismiss();
-            }
-        });
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,8 +48,10 @@ public class OrderFragment extends Fragment implements DatePickerDialog.OnDateSe
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         defineView(view);
-        setDialog();
+        setDateInit();
         changeSelectedTab();
+        setDialog();
+        loadFragment(new OrderOngoingFragment());
         imgCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +68,46 @@ public class OrderFragment extends Fragment implements DatePickerDialog.OnDateSe
         tabOrder = view.findViewById(R.id.tabOrder);
     }
 
+    private void setDialog() {
+        Date today = new Date();
+        Calendar lastYear = Calendar.getInstance();
+        lastYear.add(Calendar.YEAR, -1);
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DATE,1);
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_calendar);
+        dialogButton = dialog.findViewById(R.id.btnSaveService);
+        cal_order = dialog.findViewById(R.id.calendarPickSelectedDate);
+        cal_order.init(lastYear.getTime(), tomorrow.getTime()).inMode(CalendarPickerView.SelectionMode.RANGE).withSelectedDate(today);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Date> selectedDates = (ArrayList<Date>) cal_order.getSelectedDates();
+                SimpleDateFormat sdf =  new SimpleDateFormat(FORMAT_DATE);
+                Date startDate = selectedDates.get(0);
+                Date endDate = selectedDates.get(selectedDates.size() - 1);
+                txtDateStart.setText(sdf.format(startDate));
+                txtDateEnd.setText(sdf.format(endDate));
+                dialog.dismiss();
+                int position = tabOrder.getSelectedTabPosition();
+                if(position == 1){
+                    loadFragment(new OrderHistoryFragment());
+                }else{
+                    loadFragment(new OrderOngoingFragment());
+                }
+            }
+        });
+    }
+
+    private void setDateInit() {
+        SimpleDateFormat sdf =  new SimpleDateFormat(FORMAT_DATE);
+        Date currentTime = Calendar.getInstance().getTime();
+        txtDateEnd.setText(sdf.format(currentTime));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -1);
+        txtDateStart.setText(sdf.format(calendar.getTime()));
+    }
+
     public void changeSelectedTab() {
         tabOrder.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -96,10 +115,10 @@ public class OrderFragment extends Fragment implements DatePickerDialog.OnDateSe
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 1:
-                        fragment = new TabComboFragment();
+                        fragment = new OrderHistoryFragment();
                         break;
                     default:
-                        fragment = new TabServiceFragment();
+                        fragment = new OrderOngoingFragment();
                 }
                 loadFragment(fragment);
             }
@@ -124,10 +143,5 @@ public class OrderFragment extends Fragment implements DatePickerDialog.OnDateSe
                     .replace(R.id.fragment_container, fragment)
                     .commit();
         }
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
     }
 }

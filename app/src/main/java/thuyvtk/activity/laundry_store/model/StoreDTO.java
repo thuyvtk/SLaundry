@@ -12,7 +12,7 @@ public class StoreDTO implements Serializable {
     @SerializedName("Email")
     private String email;
     @SerializedName("Rate")
-    private int rate;
+    private float rate;
     @SerializedName("AccountId")
     private String accountId;
     @SerializedName("Phone")
@@ -31,7 +31,7 @@ public class StoreDTO implements Serializable {
     public StoreDTO() {
     }
 
-    public StoreDTO(String storeId, String storeName, String email, int rate, String accountId, String phone, String longitude, String latitude, String address, String imageUrl, boolean isActive) {
+    public StoreDTO(String storeId, String storeName, String email, float rate, String accountId, String phone, String longitude, String latitude, String address, String imageUrl, boolean isActive) {
         this.storeId = storeId;
         this.storeName = storeName;
         this.email = email;
@@ -69,11 +69,11 @@ public class StoreDTO implements Serializable {
         this.email = email;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 

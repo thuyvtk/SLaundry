@@ -1,6 +1,5 @@
 package thuyvtk.activity.laundry_store.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import java.util.List;
 import thuyvtk.activity.laundry_store.R;
 import thuyvtk.activity.laundry_store.model.OrderDetailDTO;
 import thuyvtk.activity.laundry_store.model.OrderOngoingDTO;
-import thuyvtk.activity.laundry_store.model.StoreBS;
+import thuyvtk.activity.laundry_store.model.CustomerBS;
 import thuyvtk.activity.laundry_store.presenter.OrderPresenter;
 
 public class OrderOngoingAdapter extends RecyclerView.Adapter<OrderOngoingAdapter.OrderOngoingViewHolder> {
@@ -70,12 +69,12 @@ public class OrderOngoingAdapter extends RecyclerView.Adapter<OrderOngoingAdapte
         btnRate = child.findViewById(R.id.btnRate);
 
         txt_status.setText(orderDTO.getStatus());
-        final StoreBS store = orderDTO.getListOrderServices().get(0).getServiceDTO().getStore();
+        final CustomerBS store = orderDTO.getCustomerBS();
         if (store.getImage() != null) {
             Picasso.with(context).load(store.getImage()).into(img_storeProfile);
         }
         txt_storeName.setText(store.getName());
-        String item_price = orderDTO.getListOrderServices().size() + " items - " + orderDTO.getTotalPrice() + " VND";
+        String item_price = orderDTO.getTotalPrice() + " VND";
         txt_item_price.setText(item_price);
         btnRate.setVisibility(View.GONE);
         presenter = new OrderPresenter(context);

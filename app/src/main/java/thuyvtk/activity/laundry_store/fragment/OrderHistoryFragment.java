@@ -25,14 +25,14 @@ import thuyvtk.activity.laundry_store.view.OrderView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderOngoingFragment extends Fragment implements OrderView {
+public class OrderHistoryFragment extends Fragment implements OrderView {
     RecyclerView rv_order;
     OrderPresenter orderPresenter;
     LinearLayout ln_waiting;
     OrderOngoingAdapter adapter;
     TextView txtDateStart, txtDateEnd;
 
-    public OrderOngoingFragment() {
+    public OrderHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +41,19 @@ public class OrderOngoingFragment extends Fragment implements OrderView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_order_ongoing, container, false);
+        View view =  inflater.inflate(R.layout.fragment_order_history, container, false);
         defineView(view);
         orderPresenter = new OrderPresenter((OrderView) this);
         getOrderByDate();
         return view;
+    }
+
+    private void getOrderByDate() {
+        SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(getContext());
+        String dateStart = txtDateStart.getText().toString();
+        String dateEnd = txtDateEnd.getText().toString();
+        orderPresenter.getOrderHistory(sharePreferenceLib.getUser().getStoreId(), dateStart,dateEnd);
+        ln_waiting.setVisibility(View.VISIBLE);
     }
 
     private void defineView(View view) {
@@ -59,20 +67,13 @@ public class OrderOngoingFragment extends Fragment implements OrderView {
         txtDateEnd = getActivity().findViewById(R.id.txtDayEnd);
     }
 
-    private void getOrderByDate() {
-        SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(getContext());
-        String dateStart = txtDateStart.getText().toString();
-        String dateEnd = txtDateEnd.getText().toString();
-        orderPresenter.getOrderByDateAndStatus(sharePreferenceLib.getUser().getStoreId(), dateStart,dateEnd, "ongoing");
-        ln_waiting.setVisibility(View.VISIBLE);
-
-    }
-
-
     @Override
     public void loadOrderHistory(List<OrderDetailDTO> orderList) {
-
+        adapter = new OrderOngoingAdapter(getActivity(),orderList);
+        rv_order.setAdapter(adapter);
+        ln_waiting.setVisibility(View.GONE);
     }
+
 
     @Override
     public void onFail(String msg) {
@@ -86,9 +87,7 @@ public class OrderOngoingFragment extends Fragment implements OrderView {
 
     @Override
     public void returnListOrder(List<OrderDetailDTO> listOrderDetail) {
-        adapter = new OrderOngoingAdapter(getActivity(),listOrderDetail);
-        rv_order.setAdapter(adapter);
-        ln_waiting.setVisibility(View.GONE);
+
     }
 
     @Override

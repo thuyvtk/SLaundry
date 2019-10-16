@@ -4,38 +4,24 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class StoreBS implements Serializable {
+public class CustomerBS implements Serializable {
     @SerializedName("Id")
-    private String store_id;
+    private String cutomer_Id;
     @SerializedName("Name")
     private String name;
     @SerializedName("Email")
     private String email;
     @SerializedName("rate")
     private int rate;
-    @SerializedName("Address")
-    private String Address;
     @SerializedName("Imgurl")
     private String Image;
 
-    public StoreBS(String store_id, String name, String email, int rate, String address, String image) {
-        this.store_id = store_id;
-        this.name = name;
-        this.email = email;
-        this.rate = rate;
-        Address = address;
-        Image = image;
+    public String getCutomer_Id() {
+        return cutomer_Id;
     }
 
-    public StoreBS() {
-    }
-
-    public String getStore_id() {
-        return store_id;
-    }
-
-    public void setStore_id(String store_id) {
-        this.store_id = store_id;
+    public void setCutomer_Id(String cutomer_Id) {
+        this.cutomer_Id = cutomer_Id;
     }
 
     public String getName() {
@@ -62,19 +48,19 @@ public class StoreBS implements Serializable {
         this.rate = rate;
     }
 
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
-    }
-
     public String getImage() {
         return Image;
     }
 
     public void setImage(String image) {
+        Image = image;
+    }
+
+    public CustomerBS(String cutomer_Id, String name, String email, int rate, String image) {
+        this.cutomer_Id = cutomer_Id;
+        this.name = name;
+        this.email = email;
+        this.rate = rate;
         Image = image;
     }
 }

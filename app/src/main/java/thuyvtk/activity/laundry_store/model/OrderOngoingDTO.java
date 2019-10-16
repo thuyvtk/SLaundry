@@ -12,24 +12,13 @@ public class OrderOngoingDTO implements Serializable {
     private float totalPrice;
     @SerializedName("Status")
     private String status;
-    @SerializedName("CustomerId")
-    private String customerId;
+    @SerializedName("customer")
+    private CustomerBS customerBS;
     @SerializedName("TakeTime")
     private String takeTime;
     @SerializedName("DeliveryTime")
     private String deliveryTime;
-    @SerializedName("OrderServices")
-    private List<OrderServiceDTO> listOrderServices;
 
-    public OrderOngoingDTO(String orderId, float totalPrice, String status, String customerId, String takeTime, String deliveryTime, List<OrderServiceDTO> listOrderServices) {
-        this.orderId = orderId;
-        this.totalPrice = totalPrice;
-        this.status = status;
-        this.customerId = customerId;
-        this.takeTime = takeTime;
-        this.deliveryTime = deliveryTime;
-        this.listOrderServices = listOrderServices;
-    }
 
     public String getOrderId() {
         return orderId;
@@ -55,12 +44,12 @@ public class OrderOngoingDTO implements Serializable {
         this.status = status;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public CustomerBS getCustomerBS() {
+        return customerBS;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerBS(CustomerBS customerBS) {
+        this.customerBS = customerBS;
     }
 
     public String getTakeTime() {
@@ -79,11 +68,12 @@ public class OrderOngoingDTO implements Serializable {
         this.deliveryTime = deliveryTime;
     }
 
-    public List<OrderServiceDTO> getListOrderServices() {
-        return listOrderServices;
-    }
-
-    public void setListOrderServices(List<OrderServiceDTO> listOrderServices) {
-        this.listOrderServices = listOrderServices;
+    public OrderOngoingDTO(String orderId, float totalPrice, String status, CustomerBS customerBS, String takeTime, String deliveryTime) {
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.customerBS = customerBS;
+        this.takeTime = takeTime;
+        this.deliveryTime = deliveryTime;
     }
 }

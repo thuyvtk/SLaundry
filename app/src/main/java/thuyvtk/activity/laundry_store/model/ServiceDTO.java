@@ -18,16 +18,20 @@ public class ServiceDTO implements Serializable {
     private String storeId;
     @SerializedName("Imgurl")
     private String imgUrl;
+    @SerializedName("Customer")
+    private CustomerBS customerBS;
 
     public ServiceDTO(){
     }
-    public ServiceDTO(String serviceId, String description, float price, String serviceTypeId, String storeId, String imgUrl) {
+
+    public ServiceDTO(String serviceId, String description, float price, String serviceTypeId, String storeId, String imgUrl, CustomerBS customerBS) {
         this.serviceId = serviceId;
         this.description = description;
         this.price = price;
         this.serviceTypeId = serviceTypeId;
         this.storeId = storeId;
         this.imgUrl = imgUrl;
+        this.customerBS = customerBS;
     }
 
     public String getServiceId() {
@@ -76,5 +80,13 @@ public class ServiceDTO implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public CustomerBS getCustomerBS() {
+        return customerBS;
+    }
+
+    public void setCustomerBS(CustomerBS customerBS) {
+        this.customerBS = customerBS;
     }
 }

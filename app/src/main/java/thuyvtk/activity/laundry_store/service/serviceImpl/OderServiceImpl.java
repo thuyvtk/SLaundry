@@ -62,8 +62,8 @@ public class OderServiceImpl implements OrderService {
 
 
     @Override
-    public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd, String status, final CallbackData<List<OrderDetailDTO>> callbackData) {
-        Call<ResponseBody> serviceCall = clientApi.getGenericApi().getByDateAndStatus(customerId, dateStart, dateEnd, status);
+    public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd,  final CallbackData<List<OrderDetailDTO>> callbackData) {
+        Call<ResponseBody> serviceCall = clientApi.getGenericApi().getByDateAndStatus(customerId, dateStart, dateEnd);
         try {
             serviceCall.enqueue(new Callback<ResponseBody>() {
                 @Override

@@ -41,7 +41,7 @@ public class OrderPresenter {
     }
 
     public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd, String status) {
-        orderService.getOrderByDateAndStatus(customerId, dateStart, dateEnd, status, new CallbackData<List<OrderDetailDTO>>() {
+        orderService.getOrderByDateAndStatus(customerId, dateStart, dateEnd, new CallbackData<List<OrderDetailDTO>>() {
             @Override
             public void onSuccess(List<OrderDetailDTO> orderDetailDTOS) {
                 view.returnListOrder(orderDetailDTOS);

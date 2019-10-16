@@ -5,18 +5,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txtDate"
+        android:id="@+id/txt_date_create"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/darker"
-        android:gravity="center_vertical"
-        android:paddingLeft="15px"
-        android:text="11/10/2019"
-        android:textColor="#4d4d4d"
-        android:textSize="15dp" />
-
-    <ListView
-        android:id="@+id/lvService"
+        android:background="@color/darker"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/list_order"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" >
+    </LinearLayout>
 </LinearLayout>
