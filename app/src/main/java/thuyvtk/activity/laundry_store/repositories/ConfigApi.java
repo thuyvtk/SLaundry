@@ -21,6 +21,9 @@ public class ConfigApi {
         // Store
         String GET_STORE_BY_FIREBASE_ID = "Store/GetByUserID";
         String UPDATE_STORE = "Store/UpdateStore";
+        //order
+        String ORDER_HISTORY = "Order/GetOrderHistory";
+        String GET_BY_DATE_STATUS = "Order/GetByCustomerId";
     }
 
 }

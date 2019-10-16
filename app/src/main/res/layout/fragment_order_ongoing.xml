@@ -5,9 +5,50 @@
     android:layout_height="match_parent"
     tools:context=".fragment.OrderOngoingFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Ongoing" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ln_waiting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="-25dp"
+            android:layout_marginRight="15px"
+            android:background="@drawable/boder_radius_tab_item"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:progressTint="@color/puple_blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Loading ..."
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_order"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15px"
+            android:background="@drawable/boder_radius_tab_item"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
 </FrameLayout>
