@@ -12,6 +12,8 @@ public class ServiceDTO implements Serializable {
     private String description;
     @SerializedName("Price")
     private float price;
+    @SerializedName("Quantity")
+    private int quantity;
     @SerializedName("ServiceTypeId")
     private String serviceTypeId;
     @SerializedName("StoreId")
@@ -28,6 +30,25 @@ public class ServiceDTO implements Serializable {
         this.serviceId = serviceId;
         this.description = description;
         this.price = price;
+        this.serviceTypeId = serviceTypeId;
+        this.storeId = storeId;
+        this.imgUrl = imgUrl;
+        this.customerBS = customerBS;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public ServiceDTO(String serviceId, String description, float price, int quantity, String serviceTypeId, String storeId, String imgUrl, CustomerBS customerBS) {
+        this.serviceId = serviceId;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
         this.serviceTypeId = serviceTypeId;
         this.storeId = storeId;
         this.imgUrl = imgUrl;

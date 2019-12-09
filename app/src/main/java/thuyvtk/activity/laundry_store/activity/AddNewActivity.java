@@ -209,4 +209,9 @@ public class AddNewActivity extends Activity implements ServiceView, ServiceType
     public void returnListStore(List<ServiceTypeDTO> result) {
 
     }
+
+    @Override
+    public void deleteServiceSuccess(String message) {
+
+    }
 }

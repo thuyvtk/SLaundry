@@ -41,10 +41,24 @@ public class OrderPresenter {
     }
 
     public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd, String status) {
-        orderService.getOrderByDateAndStatus(customerId, dateStart, dateEnd, new CallbackData<List<OrderDetailDTO>>() {
+        orderService.getOrderByDateAndStatus(customerId, dateStart, dateEnd, status, new CallbackData<List<OrderDetailDTO>>() {
             @Override
             public void onSuccess(List<OrderDetailDTO> orderDetailDTOS) {
                 view.returnListOrder(orderDetailDTOS);
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
+    }
+
+    public void updateOrderStatus(String orderId, String status){
+        orderService.setOrderStatus(orderId, status, new CallbackData<String>() {
+            @Override
+            public void onSuccess(String s) {
+               view.rateSuccess("update order success");
             }
 
             @Override

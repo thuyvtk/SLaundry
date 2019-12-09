@@ -13,6 +13,8 @@ public class ConfigApi {
         // Service
         String INSERT_SERVICE = "Service/CreateService";
         String GET_SERVICE_BY_STORE = "Service/GetByStore";
+        String UPDATE_SERVICE = "Service/UpdateService";
+        String DELETE_SERVICE = "Service/Delete";
         // ServiceType
         String GET_ALL_SERVICE_TYPE = "ServiceType/GetAll";
         String INSERT_SERVICE_TYPE = "ServiceType/Create";
@@ -24,6 +26,7 @@ public class ConfigApi {
         //order
         String ORDER_HISTORY = "Order/GetStoreOrderHistory";
         String GET_BY_DATE_STATUS = "Order/GetByStoreId";
+        String SET_ORDER_STATUS = "Order/SetOrderStatus";
     }
 
 }

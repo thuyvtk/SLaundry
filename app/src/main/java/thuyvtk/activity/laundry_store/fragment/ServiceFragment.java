@@ -11,13 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
-import com.google.android.material.tabs.TabLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
 import thuyvtk.activity.laundry_store.R;
-import thuyvtk.activity.laundry_store.adapter.ServiceAdapter;
 import thuyvtk.activity.laundry_store.adapter.ServiceTypeAdapter;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
@@ -51,6 +49,13 @@ public class ServiceFragment extends Fragment implements ServiceView {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        servicePresenter.getServiceByStore(sharePreferenceLib.getUser().getStoreId());
+        ln_waiting.setVisibility(View.VISIBLE);
+    }
+
     private void defineView(View view) {
         rv_service = view.findViewById(R.id.rv_service);
         rv_service.setHasFixedSize(true);
@@ -60,21 +65,33 @@ public class ServiceFragment extends Fragment implements ServiceView {
         ln_waiting = view.findViewById(R.id.ln_waiting);
     }
 
+    SharePreferenceLib sharePreferenceLib;
+
     private void getAllService() {
-        SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(getContext());
+        sharePreferenceLib = new SharePreferenceLib(getContext());
         servicePresenter.getServiceByStore(sharePreferenceLib.getUser().getStoreId());
         ln_waiting.setVisibility(View.VISIBLE);
 
     }
+
+    public void deleteService() {
+    }
+
     @Override
     public void returnService(ServiceDTO serviceDTO) {
     }
 
     @Override
     public void returnListStore(List<ServiceTypeDTO> result) {
-        serviceTypeAdapter = new ServiceTypeAdapter(getContext(),result);
+        serviceTypeAdapter = new ServiceTypeAdapter(getContext(), result, this);
         rv_service.setAdapter(serviceTypeAdapter);
         ln_waiting.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void deleteServiceSuccess(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        getAllService();
     }
 }
 

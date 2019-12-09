@@ -8,4 +8,5 @@ import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
 public interface ServiceView {
     void returnService(ServiceDTO serviceDTO);
     void returnListStore(List<ServiceTypeDTO> result);
+    void deleteServiceSuccess(String message);
 }

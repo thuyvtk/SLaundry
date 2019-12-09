@@ -113,13 +113,7 @@ public class OrderFragment extends Fragment{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment fragment = null;
-                switch (tab.getPosition()) {
-                    case 1:
-                        fragment = new OrderHistoryFragment();
-                        break;
-                    default:
-                        fragment = new OrderOngoingFragment();
-                }
+                fragment = new OrderOngoingFragment();
                 loadFragment(fragment);
             }
 

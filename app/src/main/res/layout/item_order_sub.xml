@@ -47,7 +47,7 @@
             <ImageView
                 android:id="@+id/img_storeProfile"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:src="@drawable/demo_profile"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_vertical"/>

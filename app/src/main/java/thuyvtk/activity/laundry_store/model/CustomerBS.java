@@ -11,6 +11,8 @@ public class CustomerBS implements Serializable {
     private String name;
     @SerializedName("Email")
     private String email;
+    @SerializedName("Phone")
+    private String phone;
     @SerializedName("rate")
     private int rate;
     @SerializedName("Imgurl")
@@ -53,6 +55,23 @@ public class CustomerBS implements Serializable {
     }
 
     public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public CustomerBS(String cutomer_Id, String name, String email, String phone, int rate, String image) {
+        this.cutomer_Id = cutomer_Id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.rate = rate;
         Image = image;
     }
 

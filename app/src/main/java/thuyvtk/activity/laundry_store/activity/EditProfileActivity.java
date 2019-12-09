@@ -3,6 +3,7 @@ package thuyvtk.activity.laundry_store.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,10 +18,12 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import thuyvtk.activity.laundry_store.R;
 import thuyvtk.activity.laundry_store.config.ImageManager;
+import thuyvtk.activity.laundry_store.library.LocationLibrary;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.StoreDTO;
 import thuyvtk.activity.laundry_store.presenter.StorePresenter;
@@ -46,6 +49,7 @@ public class EditProfileActivity extends Activity implements StoreView {
     StorePresenter storePresenter;
     SharePreferenceLib sharePreferenceLib;
     boolean flagChangeImageProfile = false;
+    LocationLibrary locationLibrary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,15 @@ public class EditProfileActivity extends Activity implements StoreView {
         btnSelectImage = findViewById(R.id.btnSelectImage);
         image_profile = findViewById(R.id.image_profile);
         ln_waiting = findViewById(R.id.ln_waiting);
+        locationLibrary = new LocationLibrary(getApplicationContext(), this);
+        btnEditLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Address> address = locationLibrary.getCurrentAddress();
+                String addressLine = address.get(0).getAddressLine(0);
+                btnEditLocation.setText(addressLine);
+            }
+        });
     }
 
     public void backPreActivity() {

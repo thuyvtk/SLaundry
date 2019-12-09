@@ -15,6 +15,7 @@ import retrofit2.Response;
 import thuyvtk.activity.laundry_store.callbacks.CallbackData;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
 import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
+import thuyvtk.activity.laundry_store.model.ServiceVN;
 import thuyvtk.activity.laundry_store.repositories.ClientApi;
 import thuyvtk.activity.laundry_store.service.ServiceService;
 
@@ -93,4 +94,60 @@ public class ServiceServiceImpl implements ServiceService {
             }
         });
     }
+
+    @Override
+    public void updateService(final ServiceVN serviceDTO, final CallbackData<String> callbackData) {
+        Gson gson = new Gson();
+        String json = gson.toJson(serviceDTO);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json);
+        Call<ResponseBody> callService = clientApi.getGenericApi().updateService(body);
+
+        try {
+            callService.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() == 200 || response.code() == 201) {
+                            try {
+                                callbackData.onSuccess("update service success");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            callbackData.onFail("timeout");
+                        }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    callbackData.onFail("timeout");
+                }
+            });
+        } catch (Exception e) {
+            callbackData.onFail("timeout");
+        }
+    }
+
+    @Override
+    public void deleteService(String serviceId, final CallbackData<String> callbackData) {
+        Call<ResponseBody> serviceCall = clientApi.getGenericApi().deleteService(serviceId);
+        serviceCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200 || response.code() == 201) {
+                    callbackData.onSuccess("delete success");
+                } else {
+                    callbackData.onFail("Time out");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callbackData.onFail("FAILED");
+            }
+        });
+    }
+
+
 }

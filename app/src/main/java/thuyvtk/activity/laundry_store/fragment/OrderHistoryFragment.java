@@ -69,7 +69,7 @@ public class OrderHistoryFragment extends Fragment implements OrderView {
 
     @Override
     public void loadOrderHistory(List<OrderDetailDTO> orderList) {
-        adapter = new OrderOngoingAdapter(getActivity(),orderList);
+        adapter = new OrderOngoingAdapter(getActivity(),orderList, 0 );
         rv_order.setAdapter(adapter);
         ln_waiting.setVisibility(View.GONE);
     }

@@ -209,4 +209,9 @@ public class AddOtherServiceActivity extends Activity implements ServiceTypeView
     public void returnListStore(List<ServiceTypeDTO> result) {
 
     }
+
+    @Override
+    public void deleteServiceSuccess(String message) {
+
+    }
 }

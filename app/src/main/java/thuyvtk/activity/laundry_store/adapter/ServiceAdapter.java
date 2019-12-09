@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.StoreVie
         CardView cv_service;
         TextView service_name, service_price;
         ImageView service_img;
+        ImageButton updateServicel;
 
         public StoreViewHolder(View serviceView) {
             super(serviceView);

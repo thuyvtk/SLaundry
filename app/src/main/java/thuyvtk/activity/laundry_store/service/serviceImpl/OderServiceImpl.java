@@ -62,8 +62,8 @@ public class OderServiceImpl implements OrderService {
 
 
     @Override
-    public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd,  final CallbackData<List<OrderDetailDTO>> callbackData) {
-        Call<ResponseBody> serviceCall = clientApi.getGenericApi().getByDateAndStatus(customerId, dateStart, dateEnd);
+    public void getOrderByDateAndStatus(String customerId, String dateStart, String dateEnd,String status,  final CallbackData<List<OrderDetailDTO>> callbackData) {
+        Call<ResponseBody> serviceCall = clientApi.getGenericApi().getByDateAndStatus(customerId, dateStart, dateEnd,status);
         try {
             serviceCall.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -83,6 +83,32 @@ public class OderServiceImpl implements OrderService {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        } else {
+                            callbackData.onFail("timeout");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+
+        } catch (Exception e) {
+        }
+    }
+
+    @Override
+    public void setOrderStatus(String id, String orderStatus, final CallbackData<String> callbackData) {
+        Call<ResponseBody> serviceCall = clientApi.getGenericApi().setOrderStatus(id,orderStatus);
+        try {
+            serviceCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response != null && response.body() != null) {
+                        if (response.code() == 200|| response.code() == 201) {
+                            callbackData.onSuccess("update order success");
                         } else {
                             callbackData.onFail("timeout");
                         }

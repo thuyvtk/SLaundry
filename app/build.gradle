@@ -49,6 +49,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //calendar range picker
     implementation 'com.squareup:android-times-square:1.6.5@aar'
+    implementation 'com.google.android.libraries.places:places:1.1.0'
 
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

@@ -6,6 +6,7 @@ import java.util.List;
 import thuyvtk.activity.laundry_store.callbacks.CallbackData;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
 import thuyvtk.activity.laundry_store.model.ServiceTypeDTO;
+import thuyvtk.activity.laundry_store.model.ServiceVN;
 import thuyvtk.activity.laundry_store.service.ServiceService;
 import thuyvtk.activity.laundry_store.service.serviceImpl.ServiceServiceImpl;
 import thuyvtk.activity.laundry_store.view.ServiceView;
@@ -39,6 +40,33 @@ public class ServicePresenter {
             @Override
             public void onSuccess(List<ServiceTypeDTO> result) {
                 serviceView.returnListStore(result);
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
+    }
+
+    public void deleteService(String serviceId){
+        serviceService.deleteService(serviceId, new CallbackData<String>() {
+            @Override
+            public void onSuccess(String s) {
+                serviceView.deleteServiceSuccess(s);
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
+    }
+    public void updateService(ServiceVN dto) {
+        serviceService.updateService(dto, new CallbackData<String>() {
+            @Override
+            public void onSuccess(String s) {
+                serviceView.deleteServiceSuccess(s);
             }
 
             @Override

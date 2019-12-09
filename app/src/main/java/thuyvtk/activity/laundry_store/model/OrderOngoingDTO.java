@@ -18,6 +18,10 @@ public class OrderOngoingDTO implements Serializable {
     private String takeTime;
     @SerializedName("DeliveryTime")
     private String deliveryTime;
+    @SerializedName("Address")
+    private String address;
+    @SerializedName("OrderServices")
+    private List<OrderServiceDTO> listOrderSerice;
 
 
     public String getOrderId() {
@@ -68,6 +72,35 @@ public class OrderOngoingDTO implements Serializable {
         this.deliveryTime = deliveryTime;
     }
 
+    public OrderOngoingDTO(String orderId, float totalPrice, String status, CustomerBS customerBS, String takeTime, String deliveryTime, List<OrderServiceDTO> listOrderSerice) {
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.customerBS = customerBS;
+        this.takeTime = takeTime;
+        this.deliveryTime = deliveryTime;
+        this.listOrderSerice = listOrderSerice;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public OrderOngoingDTO(String orderId, float totalPrice, String status, CustomerBS customerBS, String takeTime, String deliveryTime, String address, List<OrderServiceDTO> listOrderSerice) {
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.customerBS = customerBS;
+        this.takeTime = takeTime;
+        this.deliveryTime = deliveryTime;
+        this.address = address;
+        this.listOrderSerice = listOrderSerice;
+    }
+
     public OrderOngoingDTO(String orderId, float totalPrice, String status, CustomerBS customerBS, String takeTime, String deliveryTime) {
         this.orderId = orderId;
         this.totalPrice = totalPrice;
@@ -75,5 +108,13 @@ public class OrderOngoingDTO implements Serializable {
         this.customerBS = customerBS;
         this.takeTime = takeTime;
         this.deliveryTime = deliveryTime;
+    }
+
+    public List<OrderServiceDTO> getListOrderSerice() {
+        return listOrderSerice;
+    }
+
+    public void setListOrderSerice(List<OrderServiceDTO> listOrderSerice) {
+        this.listOrderSerice = listOrderSerice;
     }
 }

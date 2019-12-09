@@ -41,12 +41,14 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="14dp"/>
+
                     <ImageButton
+                        android:id="@+id/updateService"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:src="@drawable/ic_edit_black_24dp"
-                        android:background="@color/white"/>
+                        android:background="@color/white"
+                        android:src="@drawable/ic_edit_black_24dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,6 +62,7 @@
                         android:textColor="#000099"
                         android:textSize="12dp"/>
                     <ImageButton
+                        android:id="@+id/btnDelete"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
