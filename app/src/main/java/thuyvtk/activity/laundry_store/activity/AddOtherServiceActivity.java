@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thuyvtk.activity.laundry_store.R;
+import thuyvtk.activity.laundry_store.common.Constrain;
 import thuyvtk.activity.laundry_store.config.ImageManager;
 import thuyvtk.activity.laundry_store.library.SharePreferenceLib;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
@@ -45,9 +46,6 @@ public class AddOtherServiceActivity extends Activity implements ServiceTypeView
     Uri imageUri;
     TextView txtImgUrl;
     String imageName;
-    static final String CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=sqlvadtabpe45ilkho;AccountKey=Q0GtVfudYOKaYykP6CLCyk7uG/0Dak6C9WuAGDj5wQizMJDFEtEPaTGkGtdmNAatlbSXo4xznJAvOw4slPYAIg==;EndpointSuffix=core.windows.net";
-    static final String IMAGE_FOLDER = "imagefolder";
-    final String serverName = "https://sqlvadtabpe45ilkho.blob.core.windows.net/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +105,7 @@ public class AddOtherServiceActivity extends Activity implements ServiceTypeView
             Thread th = new Thread(new Runnable() {
                 public void run() {
                     try {
-                        imageName = ImageManager.UploadImage(imageStream, imageLength, CONNECTION_STRING, IMAGE_FOLDER);
+                        imageName = ImageManager.UploadImage(imageStream, imageLength, Constrain.STORE_ACCOUNT_CONNECTION_STRING, Constrain.IMAGE_FOLDER_STORE_ACCOUNT);
                         handler.post(new Runnable() {
                             public void run() {
                                 insertServiceType();
@@ -177,7 +175,7 @@ public class AddOtherServiceActivity extends Activity implements ServiceTypeView
     }
 
     private void insertService(ServiceTypeDTO serviceTypeDTO) {
-        String imageURL = serverName + IMAGE_FOLDER + "/" + imageName;
+        String imageURL = Constrain.SERVERNAME_STORE_ACCOUNT + Constrain.IMAGE_FOLDER_STORE_ACCOUNT + "/" + imageName;
         SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(context);
         ServiceDTO serviceDTO = new ServiceDTO();
         serviceDTO.setServiceId("");

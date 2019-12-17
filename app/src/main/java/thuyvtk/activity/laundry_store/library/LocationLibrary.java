@@ -77,7 +77,7 @@ public class LocationLibrary {
             addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             return  addresses;
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         return null;
     }

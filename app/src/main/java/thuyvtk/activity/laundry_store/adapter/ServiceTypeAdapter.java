@@ -65,7 +65,7 @@ public class ServiceTypeAdapter extends RecyclerView.Adapter<ServiceTypeAdapter.
         }
 
     }
-    CardView cv_service;
+    LinearLayout cv_service;
     TextView service_name, service_price;
     ImageView service_img;
     ImageButton updateService;

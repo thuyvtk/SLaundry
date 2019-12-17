@@ -34,8 +34,8 @@ public class ImageManager {
     https://docs.microsoft.com/en-us/rest/api/storageservices/delegating-access-with-a-shared-access-signature 
     and https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1 
     */
-    static String CONNECTION_STRING = "";
-    static String IMAGE_FOLDER = "";
+    static String CONNECTION_STRING = "https://image2001.blob.core.windows.net";
+    static String IMAGE_FOLDER = "image";
     static final String validChars = "abcdefghijklmnopqrstuvwxyz";
     static SecureRandom rnd = new SecureRandom();
 

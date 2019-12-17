@@ -131,6 +131,7 @@ public class VerifyCodeOTPActivity extends Activity implements StoreView {
     @Override
     public void returnStore(StoreDTO storeDTO) {
         SharePreferenceLib sharePreferenceLib = new SharePreferenceLib(this);
+        storeDTO.setPhone(phone);
         sharePreferenceLib.saveUser(storeDTO);
         ln_waiting.setVisibility(View.GONE);
         this.finish();

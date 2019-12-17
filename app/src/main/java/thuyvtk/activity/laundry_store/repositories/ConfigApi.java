@@ -3,7 +3,7 @@ package thuyvtk.activity.laundry_store.repositories;
 public class ConfigApi {
 
 //    public static final String BASE_URL = "https://giatdo20190924115104.azurewebsites.net/api/";
-    public static final String BASE_URL = "https://giatdo20191009105153.azurewebsites.net/api/";
+    public static final String BASE_URL = "https://giatdo20191126083629.azurewebsites.net/api/";
 
     // for localhost
 //        public static final String BASE_URL = "https://192.168.1.22:44335/api/";
