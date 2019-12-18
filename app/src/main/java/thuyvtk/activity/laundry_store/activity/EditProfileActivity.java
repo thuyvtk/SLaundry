@@ -50,6 +50,9 @@ public class EditProfileActivity extends Activity implements StoreView {
     SharePreferenceLib sharePreferenceLib;
     boolean flagChangeImageProfile = false;
     LocationLibrary locationLibrary;
+    double latitude;
+    double longitude;
+    boolean isLocationSelected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,9 @@ public class EditProfileActivity extends Activity implements StoreView {
                 try {
                     List<Address> address = locationLibrary.getCurrentAddress();
                     String addressLine = address.get(0).getAddressLine(0);
+                    latitude = address.get(0).getLatitude();
+                    longitude = address.get(0).getLongitude();
+                    isLocationSelected = true;
                     btnEditLocation.setText(addressLine);
                 }catch (Exception e){
                     Toast.makeText(EditProfileActivity.this, "Geocoder service not working please reboot your device!", Toast.LENGTH_SHORT).show();
@@ -187,6 +193,10 @@ public class EditProfileActivity extends Activity implements StoreView {
         storeDTO.setStoreName(edtUsername.getText().toString());
         storeDTO.setEmail(edtEmail.getText().toString());
         storeDTO.setAddress(btnEditLocation.getText().toString());
+        if(isLocationSelected){
+            storeDTO.setLatitude(latitude+"");
+            storeDTO.setLongitude(longitude+"");
+        }
         if (flagChangeImageProfile) {
             storeDTO.setImageUrl(imageURL);
         }
