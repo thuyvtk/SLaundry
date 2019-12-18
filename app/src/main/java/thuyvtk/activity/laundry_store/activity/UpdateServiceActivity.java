@@ -3,6 +3,7 @@ package thuyvtk.activity.laundry_store.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import thuyvtk.activity.laundry_store.model.ServiceVN;
 import thuyvtk.activity.laundry_store.presenter.ServicePresenter;
 import thuyvtk.activity.laundry_store.view.ServiceView;
 
-public class UpdateServiceActivity extends AppCompatActivity implements ServiceView {
+public class UpdateServiceActivity extends Activity implements ServiceView {
     EditText txtDescription, txtPrice;
     ServicePresenter presenter;
     ImageView imgService;

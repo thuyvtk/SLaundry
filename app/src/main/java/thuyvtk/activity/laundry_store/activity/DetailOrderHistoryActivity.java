@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,7 @@ import thuyvtk.activity.laundry_store.model.OrderOngoingDTO;
 import thuyvtk.activity.laundry_store.model.OrderServiceDTO;
 import thuyvtk.activity.laundry_store.model.ServiceDTO;
 
-public class DetailOrderHistoryActivity extends AppCompatActivity {
+public class DetailOrderHistoryActivity extends Activity {
     OrderOngoingDTO orderOngoingDTO;
     TextView txtStoreName, txtCustomerReceipt, txtPhone, txtAddress, timeTake, timeDelivery, txtTotalReceipt;
     SharePreferenceLib sharePreferenceLib;

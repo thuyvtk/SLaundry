@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class CustomerBS implements Serializable {
-    @SerializedName("Id")
+    @SerializedName("AccountId")
     private String cutomer_Id;
     @SerializedName("Name")
     private String name;
@@ -15,7 +15,7 @@ public class CustomerBS implements Serializable {
     private String phone;
     @SerializedName("rate")
     private int rate;
-    @SerializedName("Imgurl")
+    @SerializedName("ImgURL")
     private String Image;
 
     public String getCutomer_Id() {
